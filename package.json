@@ -1,7 +1,7 @@
 {
-  "name": "skeleton-typescript-project",
+  "name": "tablab-i18n",
   "version": "1.0.0",
-  "description": "A skeleton project for typescript projects",
+  "description": "Internationalized descriptions for tablab invalid instructions",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raphael-jorge/skeleton-typescript-project.git"
+    "url": "git+https://github.com/raphael-jorge/tablab-i18n.git"
   },
   "author": {
     "name": "Raphael Jorge",
@@ -24,9 +24,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/raphael-jorge/skeleton-typescript-project/issues"
+    "url": "https://github.com/raphael-jorge/tablab-i18n/issues"
   },
-  "homepage": "https://github.com/raphael-jorge/skeleton-typescript-project#readme",
+  "homepage": "https://github.com/raphael-jorge/tablab-i18n#readme",
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
