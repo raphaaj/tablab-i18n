@@ -29,7 +29,7 @@
   "homepage": "https://github.com/raphael-jorge/tablab-i18n#readme",
   "devDependencies": {
     "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.13.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
