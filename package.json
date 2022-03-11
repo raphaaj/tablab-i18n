@@ -1,12 +1,14 @@
 {
   "name": "tablab-i18n",
   "version": "1.0.0",
-  "description": "Internationalized descriptions for tablab invalid instructions",
-  "main": "index.js",
+  "description": "Internationalized messages for tablab's failed write results",
+  "main": "./lib/index.js",
   "scripts": {
+    "prebuild": "npm run build:clean",
     "build": "tsc -p tsconfig.build.json",
     "build:clean": "rimraf build",
     "test": "jest",
+    "pretest:coverage": "npm run test:clean",
     "test:coverage": "jest --coverage",
     "test:clean": "rimraf coverage",
     "lint": "eslint ./src ./test --ext .js,.jsx,.ts,.tsx",
@@ -41,6 +43,9 @@
     "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "tablab": "file:../tablab"
   },
   "config": {
     "commitizen": {
