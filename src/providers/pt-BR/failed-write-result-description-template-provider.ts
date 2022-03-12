@@ -32,7 +32,7 @@ export const failedWriteResultDescriptionTemplateProviderPtBr: FailedWriteResult
     [InvalidInstructionReason.HeaderInstructionWithoutArguments]:
       'O método para escrita de cabeçalho exige um argumento: a mensagem do cabeçalho',
     [InvalidInstructionReason.MergeInstructionWithoutTargets]:
-      'O método para união de instruções exige pelo menos duas instruções alvo para unir',
+      'O método para união de instruções exige pelo menos uma instrução alvo para unir',
     [InvalidInstructionReason.MergeInstructionWithUnmergeableTargets]:
       'As instruções alvo do método para união de instruções não podem ser instruções do tipo método',
     [InvalidInstructionReason.MergeInstructionTargetsWithNonWritableNotes]: (data = {}) => {
