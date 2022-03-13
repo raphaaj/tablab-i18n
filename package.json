@@ -19,7 +19,7 @@
     "prebuild": "npm run build:clean",
     "build": "rollup -c rollup.config.js",
     "postbuild": "rimraf lib/**/",
-    "build:clean": "rimraf build",
+    "build:clean": "rimraf lib",
     "test": "jest",
     "pretest:coverage": "npm run test:clean",
     "test:coverage": "jest --coverage",
