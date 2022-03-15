@@ -137,5 +137,82 @@ describe(`[${buildLocalizer.name}]`, () => {
       expect(writeResult.success).toBe(originalWriteResult.success);
       expect(writeResult.tab).toBe(originalWriteResult.tab);
     });
+
+    it('should update the failure message of the failed child results of successful write results if a description can be obtained for them', () => {
+      const expectedFailureMessage = 'Custom failure message';
+      const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
+      const instructionWriter = new TestInstructionWriter();
+      const tab = new Tab();
+
+      const childWriteResult = new BaseWriteResult({
+        success: false,
+        failureReasonIdentifier,
+        instructionWriter,
+        tab,
+      });
+      const originalChildWriteResult = Object.assign({}, childWriteResult);
+
+      const writeResult = new BaseWriteResult({
+        childResults: [childWriteResult],
+        success: true,
+        instructionWriter,
+        tab,
+      });
+
+      const descriptionTemplate = jest.fn(() => expectedFailureMessage);
+      const descriptionTemplateProvider = getTestDescriptionTemplateProvider();
+      descriptionTemplateProvider[failureReasonIdentifier] = descriptionTemplate;
+      const localize = buildLocalizer(descriptionTemplateProvider);
+
+      localize([writeResult]);
+
+      expect(descriptionTemplate).toHaveBeenCalled();
+      expect(childWriteResult.failureMessage).toBe(expectedFailureMessage);
+      expect(childWriteResult.failureReasonIdentifier).toBe(
+        originalChildWriteResult.failureReasonIdentifier
+      );
+      expect(childWriteResult.instructionWriter).toBe(originalChildWriteResult.instructionWriter);
+      expect(childWriteResult.success).toBe(originalChildWriteResult.success);
+      expect(childWriteResult.tab).toBe(originalChildWriteResult.tab);
+    });
+
+    it('should update the failure message of the failed child results of failed write results if a description can be obtained for them', () => {
+      const expectedFailureMessage = 'Custom failure message';
+      const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
+      const instructionWriter = new TestInstructionWriter();
+      const tab = new Tab();
+
+      const childWriteResult = new BaseWriteResult({
+        success: false,
+        failureReasonIdentifier,
+        instructionWriter,
+        tab,
+      });
+      const originalChildWriteResult = Object.assign({}, childWriteResult);
+
+      const writeResult = new BaseWriteResult({
+        childResults: [childWriteResult],
+        success: false,
+        failureReasonIdentifier,
+        instructionWriter,
+        tab,
+      });
+
+      const descriptionTemplate = jest.fn(() => expectedFailureMessage);
+      const descriptionTemplateProvider = getTestDescriptionTemplateProvider();
+      descriptionTemplateProvider[failureReasonIdentifier] = descriptionTemplate;
+      const localize = buildLocalizer(descriptionTemplateProvider);
+
+      localize([writeResult]);
+
+      expect(descriptionTemplate).toHaveBeenCalledTimes(2);
+      expect(childWriteResult.failureMessage).toBe(expectedFailureMessage);
+      expect(childWriteResult.failureReasonIdentifier).toBe(
+        originalChildWriteResult.failureReasonIdentifier
+      );
+      expect(childWriteResult.instructionWriter).toBe(originalChildWriteResult.instructionWriter);
+      expect(childWriteResult.success).toBe(originalChildWriteResult.success);
+      expect(childWriteResult.tab).toBe(originalChildWriteResult.tab);
+    });
   });
 });

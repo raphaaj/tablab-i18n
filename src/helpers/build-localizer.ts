@@ -37,6 +37,13 @@ function localizeWriteResults(
         invalidInstructionReasons,
         failedWriteResultDescriptionFactory
       );
+
+    if (writeResult.childResults)
+      localizeWriteResults(
+        writeResult.childResults,
+        invalidInstructionReasons,
+        failedWriteResultDescriptionFactory
+      );
   });
 }
 
