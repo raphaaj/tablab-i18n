@@ -18,10 +18,10 @@ Internationalized messages for [tablab](https://github.com/raphael-jorge/tablab)
 
 ## Supported locales
 
-| Locale |  Language  | Exposed Localization Function |
-| :----: | :--------: | :---------------------------: |
-| en-US  |  English   |        `localizeEnUs`         |
-| pt-BR  | Portuguese |        `localizePtBr`         |
+| Locale |  Language  | Localization Function |
+| :----: | :--------: | :-------------------: |
+| en-US  |  English   |    `localizeEnUs`     |
+| pt-BR  | Portuguese |    `localizePtBr`     |
 
 ## Install
 
@@ -35,34 +35,28 @@ npm install tablab-i18n
 
 The lib exposes the `localize` object and all the localization functions individually.
 
-A localization function is a function responsible for localizing a write result. It must be called with a write result object. If this object is a failed write result with a failure reason identifier defined by the lib [tablab](https://github.com/raphael-jorge/tablab), its failure message will be localized accordingly. Otherwise, the write result object will be kept unchanged.
+A localization function is responsible for localizing a collection of write results. It must be called with an array of write result objects. For each object, if it is a failed write result with a failure reason identifier defined by the lib [tablab](https://github.com/raphael-jorge/tablab), its failure message will be updated according to the given locale. Otherwise, the write result object will be kept unchanged.
 
-The `localize` object maps a [supported locale](#supported-locales) to its corresponding localization function. Below is an example of how the `localize` object can be used to localize a write result:
+The `localize` object maps a [supported locale](#supported-locales) to its corresponding localization function. Below is an example of how the `localize` object can be used to localize a collection of write results:
 
 ```js
 const { Parser, Tab } = require('tablab');
 const { localize } = require('tablab-i18n');
 
-const locale = 'en-US'; // any supported locale
 const instructions = '0-1';
 
 const tab = new Tab();
 const parser = new Parser();
 
-parser.parseAll(instructions).forEach((parsedInstruction) => {
-  const writeResult = parsedInstruction.writeOnTab(tab);
+const writeResults = parser
+  .parseAll(instructions)
+  .map((parsedInstruction) => parsedInstruction.writeOnTab(tab));
 
-  localize[locale](writeResult); // localize the failure message of the write result
-
-  if (!writeResult.success) {
-    console.log(
-      `${parsedInstruction.value}: ${writeResult.failureReasonIdentifier} - ${writeResult.failureMessage}`
-    );
-  }
-});
+const locale = 'en-US'; // any supported locale
+localize[locale](writeResults); // localize the failure message of all failed write results
 ```
 
-Below is an example of how a specific localization function can be used to localize a write result:
+Below is an example of how a specific localization function can be used to localize a collection of write results:
 
 ```js
 const { Parser, Tab } = require('tablab');
@@ -73,17 +67,11 @@ const instructions = '0-1';
 const tab = new Tab();
 const parser = new Parser();
 
-parser.parseAll(instructions).forEach((parsedInstruction) => {
-  const writeResult = parsedInstruction.writeOnTab(tab);
+const writeResults = parser
+  .parseAll(instructions)
+  .map((parsedInstruction) => parsedInstruction.writeOnTab(tab));
 
-  localizeEnUs(writeResult); // localize the failure message of the write result (en-US)
-
-  if (!writeResult.success) {
-    console.log(
-      `${parsedInstruction.value}: ${writeResult.failureReasonIdentifier} - ${writeResult.failureMessage}`
-    );
-  }
-});
+localizeEnUs(writeResults); // localize the failure message of all failed write results (en-US)
 ```
 
 ## License

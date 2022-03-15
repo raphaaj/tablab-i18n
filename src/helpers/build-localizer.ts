@@ -5,7 +5,7 @@ import {
   InvalidInstructionReason,
 } from 'tablab';
 
-export type Localizer = (writeResult: BaseWriteResult) => void;
+export type Localizer = (writeResults: BaseWriteResult[]) => void;
 
 export function buildLocalizer(
   failedWriteResultDescriptionTemplateProvider: FailedWriteResultDescriptionTemplateProvider
@@ -16,13 +16,28 @@ export function buildLocalizer(
     descriptionTemplateProvider: failedWriteResultDescriptionTemplateProvider,
   });
 
-  return function localize(writeResult: BaseWriteResult): void {
-    if (!writeResult) throw new Error('Write result not specified for localization');
-
-    if (!writeResult.success) {
-      localizeWriteResult(writeResult, invalidInstructionReasons, descriptionFactory);
-    }
+  return function localize(writeResults: BaseWriteResult[]): void {
+    return localizeWriteResults(writeResults, invalidInstructionReasons, descriptionFactory);
   };
+}
+
+function localizeWriteResults(
+  writeResults: BaseWriteResult[],
+  invalidInstructionReasons: string[],
+  failedWriteResultDescriptionFactory: InternalFailedWriteResultDescriptionFactory
+): void {
+  if (!writeResults) throw new Error('Write results not specified for localization');
+
+  writeResults.forEach((writeResult) => {
+    if (!writeResult) throw new Error('Failed to localize empty write result');
+
+    if (!writeResult.success)
+      localizeWriteResult(
+        writeResult,
+        invalidInstructionReasons,
+        failedWriteResultDescriptionFactory
+      );
+  });
 }
 
 function localizeWriteResult(
