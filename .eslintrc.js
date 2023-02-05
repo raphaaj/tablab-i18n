@@ -29,7 +29,6 @@ module.exports = {
             'protected-instance-field',
             'protected-abstract-field',
             'private-instance-field',
-            'private-abstract-field',
 
             'constructor',
 
@@ -39,7 +38,6 @@ module.exports = {
             'protected-instance-method',
             'protected-abstract-method',
             'private-instance-method',
-            'private-abstract-method',
           ],
           order: 'alphabetically',
         },
