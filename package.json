@@ -54,7 +54,7 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^29.4.1",
-    "prettier": "2.8.5",
+    "prettier": "2.8.6",
     "rimraf": "^4.1.1",
     "rollup": "^2.70.0",
     "rollup-plugin-dts": "^4.2.0",
