@@ -67,12 +67,13 @@
     "rollup": "^3.21.2",
     "rollup-plugin-dts": "^5.3.0",
     "standard-version": "^9.5.0",
+    "tablab": "1.0.0-alpha.5",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "tablab": "1.0.0-alpha.4"
+    "tablab": "1.0.0-alpha.5"
   },
   "config": {
     "commitizen": {

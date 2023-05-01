@@ -1,17 +1,40 @@
 import {
   BaseInstructionWriter,
+  BaseInstructionWriterOptions,
   BaseWriteResult,
   FailedWriteResultDescriptionTemplateProvider,
   InvalidInstructionReason,
+  ParsedInstructionData,
   Tab,
 } from 'tablab';
 import { buildLocalizer } from '../../src/helpers/build-localizer';
 
 class TestInstructionWriter extends BaseInstructionWriter {
+  constructor(options: BaseInstructionWriterOptions) {
+    super(options);
+  }
+
   protected internalWriteOnTab(): BaseWriteResult {
     throw new Error('Method not implemented.');
   }
 }
+
+const getTestInstructionWriter = () => {
+  const testInstructionStr = 'test';
+
+  const testParsedInstruction: ParsedInstructionData = {
+    method: null,
+    readFromIndex: 0,
+    readToIndex: testInstructionStr.length,
+    value: testInstructionStr,
+  };
+
+  const testInstructionWriter = new TestInstructionWriter({
+    parsedInstruction: testParsedInstruction,
+  });
+
+  return testInstructionWriter;
+};
 
 function getTestDescriptionTemplateProvider(): FailedWriteResultDescriptionTemplateProvider {
   const testDescriptionTemplateProvider = Object.values(InvalidInstructionReason).reduce(
@@ -54,7 +77,7 @@ describe(`[${buildLocalizer.name}]`, () => {
     });
 
     it('should not perform any action over successful write results', () => {
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
       const writeResult = new BaseWriteResult({ success: true, instructionWriter, tab });
       const originalWriteResult = Object.assign({}, writeResult);
@@ -68,7 +91,7 @@ describe(`[${buildLocalizer.name}]`, () => {
     });
 
     it('should not perform any action over failed write results with unrecognized failure reason identifiers', () => {
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
       const failureReasonIdentifier = 'TEST_CUSTOM_FAILURE_REASON_IDENTIFIER';
       const writeResult = new BaseWriteResult({
@@ -89,7 +112,7 @@ describe(`[${buildLocalizer.name}]`, () => {
 
     it('should not perform any action over failed write results if a description can not be obtained for them', () => {
       const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
       const writeResult = new BaseWriteResult({
         success: false,
@@ -113,7 +136,7 @@ describe(`[${buildLocalizer.name}]`, () => {
     it('should update the failure message of the failed write results if a description can be obtained for them', () => {
       const expectedFailureMessage = 'Custom failure message';
       const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
       const writeResult = new BaseWriteResult({
         success: false,
@@ -141,7 +164,7 @@ describe(`[${buildLocalizer.name}]`, () => {
     it('should update the failure message of the failed child results of successful write results if a description can be obtained for them', () => {
       const expectedFailureMessage = 'Custom failure message';
       const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
 
       const childWriteResult = new BaseWriteResult({
@@ -179,7 +202,7 @@ describe(`[${buildLocalizer.name}]`, () => {
     it('should update the failure message of the failed child results of failed write results if a description can be obtained for them', () => {
       const expectedFailureMessage = 'Custom failure message';
       const failureReasonIdentifier = InvalidInstructionReason.UnknownReason;
-      const instructionWriter = new TestInstructionWriter();
+      const instructionWriter = getTestInstructionWriter();
       const tab = new Tab();
 
       const childWriteResult = new BaseWriteResult({
