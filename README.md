@@ -4,10 +4,10 @@
 [![npm](https://img.shields.io/npm/v/tablab-i18n)](https://www.npmjs.com/package/tablab-i18n)
 [![npm](https://img.shields.io/npm/dt/tablab-i18n)](https://www.npmjs.com/package/tablab-i18n)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Coverage Status](https://coveralls.io/repos/github/raphael-jorge/tablab-i18n/badge.svg?branch=main)](https://coveralls.io/github/raphael-jorge/tablab-i18n?branch=main)
-[![CI](https://github.com/raphael-jorge/tablab-i18n/actions/workflows/ci.yml/badge.svg)](https://github.com/raphael-jorge/tablab-i18n/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/raphaaj/tablab-i18n/badge.svg?branch=main)](https://coveralls.io/github/raphaaj/tablab-i18n?branch=main)
+[![CI](https://github.com/raphaaj/tablab-i18n/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaaj/tablab-i18n/actions/workflows/ci.yml)
 
-Internationalized messages for [tablab](https://github.com/raphael-jorge/tablab)'s failed write results.
+Internationalized messages for [tablab](https://github.com/raphaaj/tablab)'s failed write results.
 
 ## Table of Content <!-- omit in toc -->
 
@@ -35,7 +35,7 @@ npm install tablab-i18n
 
 The lib exposes the `localize` object and all the localization functions individually.
 
-A localization function is responsible for localizing a collection of write results. It must be called with an array of write result objects. For each object, if it is a failed write result with a failure reason identifier defined by the lib [tablab](https://github.com/raphael-jorge/tablab), its failure message will be updated according to the given locale. Otherwise, the write result object will be kept unchanged.
+A localization function is responsible for localizing a collection of write results. It must be called with an array of write result objects. For each object, if it is a failed write result with a failure reason identifier defined by the lib [tablab](https://github.com/raphaaj/tablab), its failure message will be updated according to the given locale. Otherwise, the write result object will be kept unchanged.
 
 The `localize` object maps a [supported locale](#supported-locales) to its corresponding localization function. Below is an example of how the `localize` object can be used to localize a collection of write results:
 
