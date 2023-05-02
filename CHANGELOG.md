@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.2](https://github.com/raphaaj/tablab-i18n/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2023-05-02)
+
+
+### Features
+
+* upgrade tablab version from 1.0.0-alpha.4 to 1.0.0-alpha.5 ([#261](https://github.com/raphaaj/tablab-i18n/issues/261)) ([0efc82d](https://github.com/raphaaj/tablab-i18n/commit/0efc82d9a1d8219dbf0a40fcd8d624984097d505))
+
 ## [1.0.0-alpha.1](https://github.com/raphael-jorge/tablab-i18n/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2022-03-18)
 
 
