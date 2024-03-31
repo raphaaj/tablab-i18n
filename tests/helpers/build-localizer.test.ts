@@ -39,9 +39,8 @@ const getTestInstructionWriter = () => {
 function getTestDescriptionTemplateProvider(): FailedWriteResultDescriptionTemplateProvider {
   const testDescriptionTemplateProvider = Object.values(InvalidInstructionReason).reduce(
     (descriptionTemplateProvider, invalidInstructionReason, invalidInstructionReasonIndex) => {
-      descriptionTemplateProvider[
-        invalidInstructionReason
-      ] = `Teste ${invalidInstructionReasonIndex}`;
+      descriptionTemplateProvider[invalidInstructionReason] =
+        `Teste ${invalidInstructionReasonIndex}`;
 
       return descriptionTemplateProvider;
     },
