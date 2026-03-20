@@ -3,7 +3,6 @@
 [![npm](https://img.shields.io/npm/l/tablab-i18n)](LICENSE)
 [![npm](https://img.shields.io/npm/v/tablab-i18n)](https://www.npmjs.com/package/tablab-i18n)
 [![npm](https://img.shields.io/npm/dt/tablab-i18n)](https://www.npmjs.com/package/tablab-i18n)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Coverage Status](https://coveralls.io/repos/github/raphaaj/tablab-i18n/badge.svg?branch=main)](https://coveralls.io/github/raphaaj/tablab-i18n?branch=main)
 [![CI](https://github.com/raphaaj/tablab-i18n/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaaj/tablab-i18n/actions/workflows/ci.yml)
 
