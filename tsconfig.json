@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "moduleResolution": "Node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2017"],
     "declaration": true,
     "outDir": "lib",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest"]
   },
   "include": ["src/**/*", "tests/**/*"]
 }
